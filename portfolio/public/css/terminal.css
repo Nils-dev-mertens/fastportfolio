@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 1rem;
+    background-color: #000;
+    color: #33ff33;
+    font-family: monospace;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+  
+  .terminal {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Stack lines vertically */
+  }
+  
+  .terminal-line {
+    display: flex;
+    flex-direction: column; /* Stack command and output */
+  }
+  
+  .line {
+    display: flex;
+    align-items: center;
+  }
+  
+  .prompt {
+    margin-right: 0.5rem;
+    color: #33ff33;
+  }
+  
+  
+  form {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  form .prompt {
+    flex-shrink: 0;
+  }
+  
+  form input[type="text"] {
+    background-color: black;
+    border: none;
+    color: #33ff33;
+    font-family: monospace;
+    font-size: 1rem;
+    flex-grow: 1;
+    outline: none;
+  }
+  

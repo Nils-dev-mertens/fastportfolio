@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web Terminal</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/terminal.css" />
+  </head>
+  <body>
+    <div class="terminal" id="terminal"></div>
+
+    <form id="cmdForm">
+      <span class="prompt">$</span>
+      <input type="text" id="cmdInput" autocomplete="off" autofocus />
+    </form>
+
+    <script>
+      const form = document.getElementById("cmdForm");
+      const input = document.getElementById("cmdInput");
+      const terminal = document.getElementById("terminal");
+    
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const command = input.value;
+        input.value = "";
+        switch (command) {
+          case "clear":
+            location.reload();
+            break;
+          case "exit":
+            window.location.pathname = "/";
+            break;
+          default:
+            break;
+        }
+        const res = await fetch("/command", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ command }),
+        });
+
+        const html = await res.text();
+        terminal.insertAdjacentHTML("beforeend", html);
+        terminal.scrollTop = terminal.scrollHeight;
+      });
+      document.body.addEventListener("click", (e) => {
+        const isInput = e.target === input;
+        if (!isInput) input.focus();
+      });
+
+      // Auto-focus on load
+      window.addEventListener("load", () => input.focus());
+    </script>
+  </body>
+</html>

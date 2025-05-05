@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { queMail } from "./mail";
 import { Mail } from "./types";
+import { dispatch } from "./commands";
 
 dotenv.config();
 
@@ -44,7 +45,19 @@ app.post("/sendmailportfolio", (req, res) => {
         })
     }
 });
-
+app.get("/terminal", (req, res) => {
+    res.render("terminal");
+});
+app.post('/command', (req, res) => {
+    const raw = req.body.command;
+    const parts = raw.trim().split(/\s+/);
+    const name = parts[0];
+    const args = parts.slice(1);
+  
+    const output = dispatch([name, args]);
+    res.render('partials/line', { input: raw, output });
+  });
+  
 app.use((req, res) => {
     res.send({ status: 404 });
 });
