@@ -1,0 +1,109 @@
+<%- include("partials/head") %>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Nils Mertens - portfolio</title>
+    <script>
+        const themes = ['default', 'white', 'colorful'];
+        let currentThemeIndex = 0;
+
+        function cycleTheme() {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const newTheme = themes[currentThemeIndex];
+            document.body.className = newTheme;
+            localStorage.setItem('selectedTheme', newTheme);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+            currentThemeIndex = themes.indexOf(savedTheme);
+            document.body.className = savedTheme;
+        });
+    </script>
+</head>
+<body>
+    <div class="theme-selector">
+        <button onclick="cycleTheme()">☀</button>
+    </div>
+
+    <h1>Nils Mertens</h1>
+
+    <p>Hallo! Ik ben Nils, een gemotiveerde programmeur met ervaring in fullstack webontwikkeling. 
+       Ik werk graag aan zowel persoonlijke als professionele projecten en heb ook interesse in systeembeheer en netwerken. 
+       In mijn vrije tijd onderhoud ik een home server en werk ik aan open source projecten. Daarnaast ben ik fanatiek gamer en techliefhebber.</p>
+  
+    <div class="section">
+      <h2>Over Mij</h2>
+      <p>👀 Geïnteresseerd in: <strong>Code, backend development, embedded systems</strong></p>
+      <p>🌱 Momenteel leer ik: <strong>JavaScript</strong> (werk) en <strong>C</strong> (firmware voor toetsenborden)</p>
+      <p>🏗 Werkervaring:</p>
+      <ul>
+        <li><strong>WEXSO BV</strong> (consultant - media/web) — sinds juni 2024</li>
+        <li><strong>Administration.be</strong> (media/web) — februari 2024</li>
+      </ul>
+      <p>💼 Ervaring met: <strong>TypeScript, EJS, Express, SQL, MongoDB</strong></p>
+      <p>🎨 Ook ervaring met: <strong>Adobe Photoshop, Illustrator</strong></p>
+    </div>
+  
+    <div class="section">
+      <h2>Opleiding</h2>
+      <ul>
+        <li><strong>Graduaat Programmeren</strong> – AP Hogeschool, Antwerpen</li>
+        <li><strong>Opleiding Multimedia</strong> – Cadix, Noorderlaan, Antwerpen</li>
+      </ul>
+    </div>
+  
+    <div class="section">
+      <h2>Vrije Tijd & Interesses</h2>
+      <p>💻 Werken aan persoonlijke projecten, gaming (R6 Siege, DOOM Eternal), events bezoeken</p>
+      <p>🖥 Zelfstudie in systeembeheer & netwerken (eigen mediaserver/NAS)</p>
+    </div>
+  
+    <div class="section">
+      <h2>Persoonlijke Vaardigheden</h2>
+      <p>Nauwkeurigheid, stiptheid, gestructureerd werken, opdrachten correct uitvoeren</p>
+    </div>
+  
+    <div class="section">
+      <h2>Current project: starTprep</h2>
+      <p>🔗 GitHub Repo: <a href="https://github.com/JonathanMaesen/starTprep" target="_blank">github.com/JonathanMaesen/starTprep</a></p>
+      <div class="badges">
+        <img src="https://img.shields.io/github/last-commit/JonathanMaesen/starTprep" alt="Last Commit">
+        <img src="https://img.shields.io/github/languages/top/JonathanMaesen/starTprep" alt="Main Language">
+        <img src="https://img.shields.io/github/languages/count/JonathanMaesen/starTprep" alt="Languages Count">
+        <img src="https://img.shields.io/github/commit-activity/m/JonathanMaesen/starTprep" alt="Monthly Commit Activity">
+      </div>
+    </div>
+  
+    <div class="section">
+      <h2>Contact</h2>
+      <p>📫 Email: <a href="mailto:nilsdevmertens@gmail.com">nilsdevmertens@gmail.com</a></p>
+      <p>📞 Telefoon: <a href="tel:+32468127693">0468 12 76 93</a></p>
+      <p>💻 GitHub: <a href="https://github.com/Nils-Dev-Mertens" target="_blank">Nils-Dev-Mertens</a></p>
+    </div>
+    
+    <div class="section">
+        <form action="/sendmailportfolio" method="post">
+            <div>
+              <label for="mail">mail</label>
+              <input type="email" name="mail" required placeholder="Email">
+            </div>
+            <div>
+              <label for="mail">uw bericht</label>
+              <input type="text" name="message" required placeholder="Uw bericht...">
+            </div>
+            <button type="submit">verzend</button>
+        </form>
+        <% if (e != "") { %>
+          <div id="errormail">
+            <%= e %>
+          </div>
+        <% } %>
+    </div>
+    <script>
+    const inputs = document.querySelectorAll('form input');
+      inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+          input.classList.add('touched');
+        });
+      });
+    </script>
+<%- include("partials/footer") %>
