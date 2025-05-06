@@ -11,5 +11,4 @@ jobs:
           with :
             node-version : '18.x'
         - run : cd portfolio
-        - run : npm install
-        - run : npm run build
+        - run : npm run install-start-project
