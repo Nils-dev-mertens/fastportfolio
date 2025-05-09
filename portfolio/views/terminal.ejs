@@ -17,10 +17,34 @@
       const form = document.getElementById("cmdForm");
       const input = document.getElementById("cmdInput");
       const terminal = document.getElementById("terminal");
-    
+      const usedfunctions = [];
+      let tellergobackhistory = usedfunctions.length - 1;
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowUp") {
+          if (historyIndex > 0) {
+            historyIndex--;
+            input.value = usedfunctions[historyIndex];
+          }
+          event.preventDefault(); // Optional: prevents cursor from moving to start
+        } else if (event.key === "ArrowDown") {
+          if (historyIndex < usedfunctions.length - 1) {
+            historyIndex++;
+            input.value = usedfunctions[historyIndex];
+          } else {
+            // If at the end of history, clear input
+            historyIndex = usedfunctions.length;
+            input.value = "";
+          }
+          event.preventDefault();
+        }
+      });
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const command = input.value;
+        const command = input.value.trim();
+        if (command !== "") {
+          usedfunctions.push(command);
+          historyIndex = usedfunctions.length; // Reset history index to latest
+        }
         input.value = "";
         switch (command) {
           case "clear":
