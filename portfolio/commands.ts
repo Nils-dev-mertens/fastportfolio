@@ -9,8 +9,10 @@ interface filedir {
 
 let filedirtory:filedir = {
   "intro.md" : 'Hallo! Ik ben Nils, een gemotiveerde programmeur met ervaring in fullstack webontwikkeling. Ik werk graag aan zowel persoonlijke als professionele projecten en heb ook interesse in systeembeheer en netwerken. In mijn vrije tijd onderhoud ik een home server en werk ik aan open source projecten. Daarnaast ben ik fanatiek gamer en techliefhebber.',
-  "werkervaring.md" : '',
-  "opleiding.md" : '',
+  "werkervaring.md" : 'WEXSO BV (consultant - media/web) — sinds juni 2024    Administration.be (media/web) — februari 2024',
+  "opleiding.md" : 'Graduaat Programmeren – AP Hogeschool, Antwerpen    Opleiding Multimedia</strong> – Cadix, Noorderlaan, Antwerpen',
+  "persoonlijke_vaardigheden.md" : "Nauwkeurigheid, stiptheid, gestructureerd werken, opdrachten correct uitvoeren",
+  "vrijetijd.md" : "Werken aan persoonlijke projecten, gaming (R6 Siege, DOOM Eternal), events bezoeken</p><p>Zelfstudie in systeembeheer & netwerken (eigen mediaserver/NAS)"
 }
 interface command {
   [key : string] : string
